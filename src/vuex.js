@@ -10,10 +10,16 @@ export default createStore({
     mutateAllTodos: (state, AllTodos) => {
       state.todos = AllTodos;
     },
+    mutateEditingTodo: (state, todo) => {
+      state.todos[todo.id - 1] = todo;
+    },
   },
   actions: {
     async getAllTodosAction({ commit }) {
       commit('mutateAllTodos', await api.getAll());
+    },
+    async editTodoAction({ commit }, obj) {
+      commit('mutateEditingTodo', await api.editTodo(obj));
     },
   },
   modules: {},

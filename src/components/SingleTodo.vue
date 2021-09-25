@@ -3,14 +3,33 @@
     <h4>{{ Todo.title }}</h4>
     <p>{{ Todo.id }}</p>
     <button class="btn red">Delete</button>
-    <button class="btn green">Edit</button>
+    <button class="btn green" @click="showModalClick()">Edit</button>
+    <edit-modal v-show="showModal" :Todo="Todo" @hide="showModal = !showModal"/>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import EditModal from './EditModal.vue';
+
 export default {
   name: 'SingleTodo',
+  components: {
+    EditModal,
+  },
   props: ['Todo'],
+  emits: ['hide'],
+  data() {
+    return {
+      showModal: false,
+    };
+  },
+  methods: {
+    showModalClick() {
+      this.showModal = !this.showModal;
+    },
+    ...mapActions(['mutateeditTodos']),
+  },
 };
 </script>
 

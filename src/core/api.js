@@ -10,6 +10,20 @@ const getAll = async () => {
     throw Error('faild to get data');
   }
 };
+const editTodo = async (todo) => {
+  try {
+    const res = await axios.patch(`https://jsonplaceholder.typicode.com/todos/${todo.id}`, {
+      completed: todo.completed,
+      id: todo.id,
+      title: todo.title,
+      userId: todo.userId,
+    });
+    // eslint-disable-next-line no-unreachable
+    console.log(res);
+    return res.data;
+  } catch (error) {
+    throw Error('faild to edit data');
+  }
+};
 
-// eslint-disable-next-line import/prefer-default-export
-export { getAll };
+export { getAll, editTodo };
