@@ -13,6 +13,9 @@ export default createStore({
     mutateEditingTodo: (state, todo) => {
       state.todos[todo.id - 1] = todo;
     },
+    mutateaddingTodo: (state, todo) => {
+      state.todos.push(todo);
+    },
   },
   actions: {
     async getAllTodosAction({ commit }) {
@@ -20,6 +23,9 @@ export default createStore({
     },
     async editTodoAction({ commit }, obj) {
       commit('mutateEditingTodo', await api.editTodo(obj));
+    },
+    async addTodoAction({ commit }, obj) {
+      commit('mutateaddingTodo', await api.addTodo(obj));
     },
   },
   modules: {},
