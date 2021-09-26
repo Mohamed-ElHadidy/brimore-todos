@@ -2,7 +2,10 @@
   <div class="todo-block">
     <h4>{{ Todo.title }}</h4>
     <p>{{ Todo.id }}</p>
-    <button class="btn red">Delete</button>
+    <button
+      class="btn red" @click="deleteTodo(Todo.id)">
+      Delete
+    </button>
     <button class="btn green" @click="showModalClick()">Edit</button>
     <edit-modal v-show="showModal" :Todo="Todo" @hide="showModal = !showModal"/>
   </div>
@@ -27,6 +30,9 @@ export default {
   methods: {
     showModalClick() {
       this.showModal = !this.showModal;
+    },
+    deleteTodo(id) {
+      this.$store.dispatch('deleteTodoAction', id);
     },
     ...mapActions(['mutateeditTodos']),
   },

@@ -41,4 +41,17 @@ const addTodo = async (todo) => {
   }
 };
 
-export { getAll, editTodo, addTodo };
+const deleteTodo = async (id) => {
+  try {
+    const res = await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
+    // eslint-disable-next-line no-unreachable
+    console.log(res);
+    return id;
+  } catch (error) {
+    throw Error('faild to delete todo');
+  }
+};
+
+export {
+  getAll, editTodo, addTodo, deleteTodo,
+};

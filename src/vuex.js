@@ -11,10 +11,14 @@ export default createStore({
       state.todos = AllTodos;
     },
     mutateEditingTodo: (state, todo) => {
-      state.todos[todo.id - 1] = todo;
+      const idx = state.todos.findIndex((el) => el.id === todo.id);
+      state.todos[idx] = todo;
     },
     mutateaddingTodo: (state, todo) => {
-      state.todos.push(todo);
+      state.todos = [todo, ...state.todos];
+    },
+    mutatedeletingTodo: (state, deltodo) => {
+      state.todos = state.todos.filter((todo) => todo.id !== deltodo);
     },
   },
   actions: {
@@ -26,6 +30,9 @@ export default createStore({
     },
     async addTodoAction({ commit }, obj) {
       commit('mutateaddingTodo', await api.addTodo(obj));
+    },
+    async deleteTodoAction({ commit }, id) {
+      commit('mutatedeletingTodo', await api.deleteTodo(id));
     },
   },
   modules: {},
