@@ -4,10 +4,11 @@
     <input type="text" v-model="addTodoValues.title" id="input" placeholder="Add Todo" required>
     <input class="btn" type="submit" value="Add Todo">
   </form>
-  <h3>add todo</h3>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'AddTodoForm',
   data() {
@@ -22,9 +23,10 @@ export default {
   },
   methods: {
     addTodo() {
-      this.$store.dispatch('addTodoAction', this.addTodoValues);
+      this.addTodoAction(this.addTodoValues);
       console.log(this.addTodoValues);
     },
+    ...mapActions(['addTodoAction']),
   },
 };
 </script>

@@ -10,23 +10,28 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'EditModal',
   props: ['Todo'],
   emits: ['hide'],
   data() {
+    const {
+      completed, id, title, userId,
+    } = this.Todo;
     return {
       editedTodo: {
-        completed: this.Todo.completed,
-        id: this.Todo.id,
-        title: this.Todo.title,
-        userId: this.Todo.userId,
+        completed,
+        id,
+        title,
+        userId,
       },
     };
   },
   methods: {
     saveMe() {
-      this.$store.dispatch('editTodoAction', this.editedTodo);
+      this.editTodoAction(this.editedTodo);
       console.log(this.editedTodo);
       this.hide();
     },
@@ -34,6 +39,7 @@ export default {
       this.$emit('hide');
       console.log(this);
     },
+    ...mapActions(['editTodoAction']),
   },
 };
 </script>

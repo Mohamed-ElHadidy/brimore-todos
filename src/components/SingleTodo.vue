@@ -32,9 +32,9 @@ export default {
       this.showModal = !this.showModal;
     },
     deleteTodo(id) {
-      this.$store.dispatch('deleteTodoAction', id);
+      this.deleteTodoAction(id);
     },
-    ...mapActions(['mutateeditTodos']),
+    ...mapActions(['mutateeditTodos', 'deleteTodoAction']),
   },
 };
 </script>

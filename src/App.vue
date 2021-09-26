@@ -5,6 +5,7 @@
   <todos />
 </template>
 <script>
+import { mapState } from 'vuex';
 import AddTodoForm from './components/AddTodoForm.vue';
 import Todos from './components/Todos.vue';
 
@@ -14,9 +15,12 @@ export default {
     AddTodoForm,
     Todos,
   },
+  methods: {
+    ...mapState(['appTitle']),
+  },
   computed: {
     title() {
-      return this.$store.state.appTitle;
+      return this.appTitle();
     },
   },
 };

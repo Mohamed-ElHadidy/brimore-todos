@@ -1,17 +1,16 @@
 <template>
-  <h3>todo list</h3>
   <div class="todos">
     <SingleTodo
-    :Todo="todo"
-    v-for="todo in AllTodos" :key="todo.id"
-    class="todo">
-    {{todo.id}}
+      :Todo="todo"
+      v-for="todo in AllTodos" :key="todo.id"
+      class="todo">
+      {{todo.id}}
     </SingleTodo>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import SingleTodo from './SingleTodo.vue';
 
 export default {
@@ -22,13 +21,14 @@ export default {
   props: ['Todo'],
   methods: {
     ...mapActions(['getAllTodosAction']),
+    ...mapState(['todos']),
   },
   created() {
     this.getAllTodosAction();
   },
   computed: {
     AllTodos() {
-      return this.$store.state.todos;
+      return this.todos();
     },
   },
 };
