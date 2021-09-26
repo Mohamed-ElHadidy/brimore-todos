@@ -24,7 +24,6 @@ export default {
   methods: {
     addTodo() {
       this.addTodoAction(this.addTodoValues);
-      console.log(this.addTodoValues);
     },
     ...mapActions(['addTodoAction']),
   },

@@ -14,10 +14,10 @@ export default createStore({
       const idx = state.todos.findIndex((el) => el.id === todo.id);
       state.todos[idx] = todo;
     },
-    mutateaddingTodo: (state, todo) => {
+    mutateAddingTodo: (state, todo) => {
       state.todos = [todo, ...state.todos];
     },
-    mutatedeletingTodo: (state, deltodo) => {
+    mutateDeletingTodo: (state, deltodo) => {
       state.todos = state.todos.filter((todo) => todo.id !== deltodo);
     },
   },
@@ -29,10 +29,10 @@ export default createStore({
       commit('mutateEditingTodo', await api.editTodo(obj));
     },
     async addTodoAction({ commit }, obj) {
-      commit('mutateaddingTodo', await api.addTodo(obj));
+      commit('mutateAddingTodo', await api.addTodo(obj));
     },
     async deleteTodoAction({ commit }, id) {
-      commit('mutatedeletingTodo', await api.deleteTodo(id));
+      commit('mutateDeletingTodo', await api.deleteTodo(id));
     },
   },
   modules: {},

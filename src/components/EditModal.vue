@@ -32,12 +32,12 @@ export default {
   methods: {
     saveMe() {
       this.editTodoAction(this.editedTodo);
-      console.log(this.editedTodo);
+      // hide editing modal after dispatching the action
       this.hide();
     },
     hide() {
+      // to update the showing modal value to hide it again when the user clicks cancel button
       this.$emit('hide');
-      console.log(this);
     },
     ...mapActions(['editTodoAction']),
   },

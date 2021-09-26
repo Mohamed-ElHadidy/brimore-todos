@@ -27,6 +27,7 @@ export default {
     this.getAllTodosAction();
   },
   computed: {
+    // getting all todos data from state
     AllTodos() {
       return this.todos();
     },
